@@ -18,18 +18,25 @@ app.get('/pessoas', async function(req, res){
 });
 
 app.get('/pessoas/criar', async function(req, res){
-  var pessoas = await dados.findAll();
-  res.render('pessoas/criar', { pessoas });
+  res.render('pessoas/criar');
 });
-
 app.post('/pessoas/criar', async function(req, res){
   try {
-    await dados.create(req.body);
-    res.redirect('/pessoas')
+      await dados.create(req.body);
+      res.redirect('/pessoas')
   } catch (err) {
       console.error(err);
       res.status(500).json({ message: 'Ocorreu um erro ao criar o usuário.' });
   }
+});
+app.get('/pessoas/delete', async function(req, res){
+  try {
+    await dados.destroy({ where: { id: req.query.id } });
+    res.redirect('/pessoas')
+} catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Ocorreu um erro ao deletar o usuário.' });
+}
 });
 
 app.listen(3000, function() {
