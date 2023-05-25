@@ -8,13 +8,15 @@
     <link rel='stylesheet' type='text/css' media='screen' href='/style/style.css'>
     <script src='main.js'></script>
 </head>
-<body>
+<body >
+     <div class="meio">
     <% pessoas.forEach((pessoa) => { %>
         <%= pessoa.nome %> 
          <%= pessoa.sobrenome %> 
          <%= pessoa.idade %><br/>
-         <a href="/pessoas/delete?id=<%= pessoa.id %>">Deletar</a>
-    <% }) %>
+         <a href="/pessoas/delete?id=<%= pessoa.id %>">Deletar</a> 
+    <% }) %>  </div>
     <a href="/pessoas/criar">Cadastrar</a>
+    
 </body>
 </html>
